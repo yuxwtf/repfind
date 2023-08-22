@@ -19,7 +19,7 @@
         const prms = new URLSearchParams(window.location.search);
         const productId = prms.get('id');
     
-        fetch('/data/products.json')
+        fetch('./data/products.json')
           .then(response => response.json())
           .then(data => {
             const product = data.find(item => item.id === productId);
