@@ -1,3 +1,1 @@
-# repfind
-
-Join ur discord --> https://discord.gg/unHvy7uC4x
+# Join our discord server --> https://discord.gg/unHvy7uC4x
