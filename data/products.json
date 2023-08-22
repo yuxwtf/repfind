@@ -810,6 +810,21 @@
         
         "link": "https://chaosmade.x.yupoo.com/albums",
         "starred": false
+    },
+
+    {
+        "id": "61",
+        "name": "Our Discord",
+        "category": "Others",
+        "image": "assets/discord.png",
+        "prices": {
+            "cny": 0,
+            "usd": 0
+        },
+        "description": "Join the discord to propose product addition !",
+        
+        "link": "https://discord.gg/4W3cYMpRWh",
+        "starred": true
     }
 
 ]
