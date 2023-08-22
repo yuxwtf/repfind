@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repfind</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+
+
+    <h1 style="margin-top: 100px;" class="title center fw-bold">Repfind</h1>
+
+    <div class="container-main center">
+        <input type="text" class="searchinput" placeholder="Search for product" oninput="filterProductsBySearch(this.value)">
+    </div>
+
+    <div class="category-btns">
+        <button class="btn" id="all" onclick="showAllProducts()">All</button>
+        <button class="btn" id="agent" onclick="showProductsByCategory(this.id)">Agents</button>
+        <button class="btn" id="pants" onclick="showProductsByCategory(this.id)">Pants</button>
+        <button class="btn" id="shorts" onclick="showProductsByCategory(this.id)">Shorts</button>
+        <button class="btn" id="tees" onclick="showProductsByCategory(this.id)">Tees</button>
+        <button class="btn" id="shoes" onclick="showProductsByCategory(this.id)">Shoes</button>
+        <button class="btn" id="jackets" onclick="showProductsByCategory(this.id)">Jackets</button>
+        <button class="btn" id="hoodies" onclick="showProductsByCategory(this.id)">Hoodies</button>
+        <button class="btn" id="jewels" onclick="showProductsByCategory(this.id)">Jewels</button>
+        <button class="btn" id="others" onclick="showProductsByCategory(this.id)">Others</button>
+        <button class="btn" id="sellers" onclick="showProductsByCategory(this.id)">Sellers</button>
+    </div>
+
+    <div id="products-container">
+
+    </div>
+</body>
+
+<script>
+
+
+
+let productsList = [];
+
+function returnStar(product) {
+    const isStarred = product.starred
+    if (isStarred) {
+        return '<i class="golden-gradient bi bi-star-fill"></i>'
+    } else {
+        return ""
+    }
+}
+
+
+function showProductsByCategory(category) {
+  const productsContainer = document.getElementById('products-container');
+  productsContainer.innerHTML = '';
+
+  const filteredProducts = productsList.filter(product => product.category.toLowerCase() === category.toLowerCase());
+  if (filteredProducts.length > 0) {
+    filteredProducts.forEach(product => {
+      const productHTML = `
+        <div data-aos="fade-up" class="product" id="${product.category}">
+          <img src="${product.image}" alt="${product.name}">
+          <h3>${product.name} ${returnStar(product)}</h3>
+          <p>Category: ${product.category}</p>
+          <p class="product-price">Price: ${product.prices.cny}¥ (~$${product.prices.usd})</p>
+          <a class="btn" href="view.html?id=${product.id}">View Product</a>
+        </div>
+      `;
+      productsContainer.innerHTML += productHTML;
+    });
+  } 
+}
+
+function showAllProducts() {
+  const productsContainer = document.getElementById('products-container');
+  productsContainer.innerHTML = '';
+
+  if (productsList.length > 0) {
+    productsList.forEach(product => {
+      const productHTML = `
+        <div data-aos="fade-up" class="product" id="${product.category}">
+          <img src="${product.image}" alt="${product.name}">
+          <h3>${product.name} ${returnStar(product)}</h3>
+          <p>Category: ${product.category}</p>
+          <p class="product-price">Price: ${product.prices.cny}¥ (~$${product.prices.usd})</p>
+          <a class="btn" href="view.html?id=${product.id}">Show Product</a>
+        </div>
+      `;
+      productsContainer.innerHTML += productHTML;
+    });
+  } 
+}
+
+function filterProductsBySearch(searchQuery) {
+  const filteredProducts = productsList.filter(product => product.name.toLowerCase().includes(searchQuery.toLowerCase()));
+  showFilteredProducts(filteredProducts);
+}
+
+function showFilteredProducts(filteredProducts) {
+  const productsContainer = document.getElementById('products-container');
+  productsContainer.innerHTML = '';
+
+  if (filteredProducts.length > 0) {
+    filteredProducts.forEach(product => {
+      const productHTML = `
+        <div data-aos="fade-up" class="product" id="${product.category}">
+          <img src="${product.image}" alt="${product.name}">
+          <h3>${product.name} ${returnStar(product)}</h3>
+          <p>Category: ${product.category}</p>
+          <p class="product-price">Price: ${product.prices.cny}¥ (~$${product.prices.usd})</p>
+          <a class="btn" href="view.html?id=${product.id}">View Product</a>
+        </div>
+      `;
+      productsContainer.innerHTML += productHTML;
+      console.log(productHTML);
+    });
+    
+  } 
+}
+
+function initProducts() {
+  fetch('data/products.json')
+    .then(response => response.json())
+    .then(products => {
+      productsList = products;
+      showProductsByCategory("Agent");
+      swal("Credits", "Many product has been taken from HAULED website on github, thanks", 'info');
+    })
+}
+
+
+AOS.init();
+initProducts();
+
+</script>
+
+</html>

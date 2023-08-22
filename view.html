@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repfind - Product</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+    <body>
+        
+    <div id="products-container">
+
+    </div>
+
+    <script>
+        const prms = new URLSearchParams(window.location.search);
+        const productId = prms.get('id');
+    
+        fetch('/data/products.json')
+          .then(response => response.json())
+          .then(data => {
+            const product = data.find(item => item.id === productId);
+            console.log(product)
+    
+            if (product) {
+              const productContainer = document.getElementById('products-container');
+              const productHTML = `
+      <div class="product-view">
+        <img src="${product.image}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p>Category: ${product.category}</p>
+        <p>Description: ${product.description}</p>
+        <p>Price (CNY): ${product.prices.cny}</p>
+        <p>Price (USD): ${product.prices.usd}</p>
+        <a class="btn" href="${product.link}" target="_blank">Open Link</a>
+        <h1 class="center" style="margin-top: 30px; text-decoration:underline;">QC Images</h1>
+        <div id="pictures"></div>
+      </div>
+    `;        
+
+    
+              productContainer.innerHTML = productHTML;
+            } else {
+              const productContainer = document.getElementById('product-container');
+              productContainer.innerHTML = "<p>Product not found.</p>";
+            }
+
+            let imgContainer = document.getElementById('pictures');
+
+            imgContainer.innerHTML = "<h2>No Images Found.</h2>"
+
+            fetch(`https://api.qc.photos/v3/getProductInfo/pandabuy?url=${product.link}&view=true`)
+            .then(response => response.json())
+            .then(data => {
+                const imgSets = data['data']['qc_image_set_container']['qc_image_sets'];
+                let imgCode = '';
+                imgSets.forEach(imgSet => {
+                    imgSet['images'].forEach(image => {
+                        imgCode += `<img data-aos="zoom-in" style="margin: 10px;" src="${image['qc_image_url']}">`;
+                    });
+                });
+
+                imgContainer.innerHTML = imgCode;
+
+
+
+            });
+
+            fetch(`https://api.qc.photos/v3/getProductInfo/superbuy?url=${product.link}&view=true`)
+            .then(response => response.json())
+            .then(data => {
+                const imgSets = data['data']['qc_image_set_container']['qc_image_sets'];
+                let imgCode = '';
+                
+
+                imgSets.forEach(imgSet => {
+                    imgSet['images'].forEach(image => {
+                        imgCode += `<img data-aos="zoom-in" style="margin: 10px;" src="${image['qc_image_url']}">`;
+                    });
+                });
+
+                imgContainer.innerHTML = imgCode;
+
+
+            });
+
+            fetch(`https://api.qc.photos/v3/getProductInfo/cssbuy?url=${product.link}&view=true`)
+            .then(response => response.json())
+            .then(data => {
+                const imgSets = data['data']['qc_image_set_container']['qc_image_sets'];
+                let imgCode = '';
+                
+                imgSets.forEach(imgSet => {
+                    imgSet['images'].forEach(image => {
+                        imgCode += `<img data-aos="zoom-in" style="margin: 10px;" src="${image['qc_image_url']}">`;
+                    });
+                });
+
+                imgContainer.innerHTML = imgCode;
+
+
+            });
+            console.log(imgCode);
+
+          })
+          .catch(error => {
+            console.error('Error fetching product data:', error);
+          });
+
+          AOS.init();
+      </script>
+
+</body>
+</html>
