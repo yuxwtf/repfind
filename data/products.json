@@ -3,7 +3,7 @@
         "id": "0",
         "name": "Pandabuy",
         "category": "Agent",
-        "image": "/assets/pandabuy.png",
+        "image": "assets/pandabuy.png",
         "prices": {
             "cny": 0,
             "usd": 0
@@ -17,7 +17,7 @@
         "id": "1",
         "name": "Sugargoo",
         "category": "Agent",
-        "image": "/assets/sugargoo.png",
+        "image": "assets/sugargoo.png",
         "prices": {
             "cny": 0,
             "usd": 0
@@ -31,7 +31,7 @@
         "id": "2",
         "name": "Hagobuy",
         "category": "Agent",
-        "image": "/assets/hagobuy.png",
+        "image": "assets/hagobuy.png",
         "prices": {
             "cny": 0,
             "usd": 0
@@ -46,7 +46,7 @@
         "id": "3",
         "name": "Cssbuy",
         "category": "Agent",
-        "image": "/assets/cssbuy.png",
+        "image": "assets/cssbuy.png",
         "prices": {
             "cny": 0,
             "usd": 0
@@ -91,7 +91,7 @@
         "id": "6",
         "name": "Superbuy",
         "category": "Agent",
-        "image": "/assets/superbuy.png",
+        "image": "assets/superbuy.png",
         "prices": {
             "cny": 0,
             "usd": 0
@@ -105,7 +105,7 @@
         "id": "7",
         "name": "Wegobuy",
         "category": "Agent",
-        "image": "/assets/wegobuy.png",
+        "image": "assets/wegobuy.png",
         "prices": {
             "cny": 0,
             "usd": 0
@@ -120,7 +120,7 @@
         "id": "8",
         "name": "Goat",
         "category": "Sellers",
-        "image": "/assets/no-image.png",
+        "image": "assets/no-image.png",
         "prices": {
             "cny": 0,
             "usd": 0
@@ -134,7 +134,7 @@
         "id": "9",
         "name": "Husky",
         "category": "Sellers",
-        "image": "/assets/no-image.png",
+        "image": "assets/no-image.png",
         "prices": {
             "cny": 0,
             "usd": 0
@@ -829,7 +829,7 @@
         "id": "60",
         "name": "Chaosmade",
         "category": "Sellers",
-        "image": "/assets/no-image.png",
+        "image": "assets/no-image.png",
         "prices": {
             "cny": 0,
             "usd": 0
