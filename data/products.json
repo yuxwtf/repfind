@@ -17,7 +17,7 @@
         "id": "1",
         "name": "Sugargoo",
         "category": "Agent",
-        "image": "assets/sugargoo.png",
+        "image": "./assets/sugargoo.png",
         "prices": {
             "cny": 0,
             "usd": 0
