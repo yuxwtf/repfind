@@ -58,34 +58,6 @@
     },
 
 
-    {
-        "id": "4",
-        "name": "AMIRI TEE",
-        "category": "Tees",
-        "image": "https://cdn.discordapp.com/attachments/1143252920658309232/1143265241606664223/PI23082566002_3.jpg",
-        "prices": {
-            "cny": 0,
-            "usd": 16.10
-        },
-        "description": "None",
-        "weight": 270,
-        "link": "",
-        "starred": false
-    },
-    {
-        "id": "5",
-        "name": "TN",
-        "category": "shoes",
-        "image": "https://si.geilicdn.com/pcitem1149995605-3d640000017d1a30c62d0a207569_790_790.jpg.webp?w=750&h=750&cp=1",
-        "prices": {
-            "cny": 169,
-            "usd": 0
-        },
-        "description": "None",
-        "weight": 926,
-        "link": "https://shop1149995605.v.weidian.com/item.html?itemID=3726505599",
-        "starred": false
-    },
 
     {
         "id": "6",
